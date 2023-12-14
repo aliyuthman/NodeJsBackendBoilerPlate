@@ -1,15 +1,18 @@
 const express = require("express");
+const findById = require("../services/userServices");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Hello! NodeJs");
-});
 
 router.get("/users", (req, res) => {
   res.send("Users route");
 });
 
+router.get("/users/:id", (req, res) => {
+  res.send(findById(req.params.id));
+});
+
 router.post("/users", (req, res) => {
+  console.log(req.body);
   res.send("Created user");
 });
 
