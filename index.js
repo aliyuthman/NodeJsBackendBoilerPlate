@@ -1,10 +1,20 @@
 const express = require("express");
 const app = express();
 const helloMiddleWare = require("./middleware/helloMiddleware");
+const variables = require('./config/variables')
+
+
+console.log(variables.username)
+console.log(variables.password)
+
+const port = variables.port || "5000";
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.listen(3000);
+app.listen(port, () => {
+  console.log("Server running on localhost:" + port);
+});
 const userRouter = require("./routes/userController");
 
 app.get("/", helloMiddleWare, (req, res) => {
